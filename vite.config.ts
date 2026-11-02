@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
+    base: '/arimann/',
     staged: { '*': 'vp check --fix' },
     run: {
       cache: {
