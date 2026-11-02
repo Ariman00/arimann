@@ -147,13 +147,13 @@ body {
     var(--portfolio-bg);
 }
 .portfolio-backdrop {
-  position: absolute;
-  z-index: -1;
-  inset: 0 0 auto;
-  height: 920px;
-  opacity: 0.52;
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  height: 100vh;
+  opacity: 0.48;
   pointer-events: none;
-  mask-image: linear-gradient(#000 35%, transparent 100%);
+  mask-image: linear-gradient(#000 0%, #000 72%, transparent 100%);
 }
 .portfolio-backdrop > div {
   width: 100%;
@@ -164,6 +164,8 @@ body {
 .portfolio-section,
 .portfolio-contact,
 .portfolio-footer {
+  position: relative;
+  z-index: 1;
   width: min(1180px, calc(100% - 64px));
   margin-inline: auto;
 }
