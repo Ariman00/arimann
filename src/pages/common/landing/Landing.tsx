@@ -6,10 +6,9 @@ import AnimatedBorder from '@/components/portfolio/AnimatedBorder'
 import BlurText from '@/components/portfolio/BlurText'
 import CountUp from '@/components/portfolio/CountUp'
 import SpotlightCard from '@/components/portfolio/SpotlightCard'
-import ColorBends from '@/components/react-bits/ColorBends'
 import FlexCarousel from '@/components/react-bits/FlexCarousel'
+import GridScanBackground from '@/components/react-bits/GridScan'
 import { isLanguage } from '@/types/Languages'
-import { useThemeColors } from '@/utils/useThemeColors'
 
 const copy = {
   ru: {
@@ -197,11 +196,6 @@ const sumSymbol = '∑'
 const Landing = () => {
   const { i18n } = useTranslation()
   const [activeProject, setActiveProject] = useState(0)
-  const c = useThemeColors()
-  const colors = useMemo(
-    () => [c.primary, c.primaryLight, c.secondary],
-    [c.primary, c.primaryLight, c.secondary]
-  )
   const detectedLanguage = (i18n.resolvedLanguage ?? 'ru').split('-')[0] ?? 'ru'
   const language = isLanguage(detectedLanguage) ? detectedLanguage : 'ru'
   const content = copy[language]
@@ -217,21 +211,21 @@ const Landing = () => {
   return (
     <main className="portfolio-page">
       <div className="portfolio-backdrop" aria-hidden="true">
-        <ColorBends
-          colors={colors}
-          rotation={45}
-          speed={0.12}
-          scale={1.25}
-          frequency={0.8}
-          warpStrength={0.8}
-          mouseInfluence={0.35}
-          parallax={0.2}
-          noise={0.08}
-          iterations={2}
-          intensity={0.8}
-          bandWidth={5}
-          transparent
-          autoRotate={0.08}
+        <GridScanBackground
+          className="h-full w-full"
+          linesColor="#52604d"
+          scanColor="#c6f36a"
+          cells={8}
+          depth={2.8}
+          depthFade={0.8}
+          parallax={0.16}
+          shading={0.5}
+          scanDuration={5.5}
+          scanDelay={1.4}
+          glow={0.7}
+          autoScan
+          interactive
+          clickEffect="ping"
         />
       </div>
       <header className="portfolio-header">
