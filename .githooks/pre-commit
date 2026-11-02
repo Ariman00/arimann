@@ -1,0 +1,43 @@
+#!/usr/bin/env sh
+set -e
+
+repo_root="$(git rev-parse --show-toplevel)"
+tmp_file="$(mktemp)"
+
+git diff --cached --name-only --diff-filter=ACMR -z |
+while IFS= read -r -d '' file; do
+  dir="$repo_root/$(dirname "$file")"
+
+  while [ "$dir" != "$repo_root" ] && [ "$dir" != "/" ]; do
+    if [ -f "$dir/vite.config.ts" ]; then
+      printf '%s\n' "$dir"
+      break
+    fi
+
+    parent="$(dirname "$dir")"
+    [ "$parent" = "$dir" ] && break
+    dir="$parent"
+  done
+done |
+sort -u > "$tmp_file"
+
+while IFS= read -r project; do
+  [ -z "$project" ] && continue
+
+  echo "VITE+ - staged checks in: $project"
+
+  (
+    cd "$project"
+
+    if [ -x "./node_modules/.bin/vp" ]; then
+      ./node_modules/.bin/vp staged
+    elif command -v vp >/dev/null 2>&1; then
+      vp staged
+    else
+      echo "VITE+ - vp not found in $project"
+      exit 127
+    fi
+  )
+done < "$tmp_file"
+
+rm -f "$tmp_file"
