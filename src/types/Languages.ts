@@ -1,4 +1,4 @@
-export const languages = ['ru', 'kk', 'en'] as const
+export const languages = ['ru', 'kk', 'en', 'es'] as const
 
 export type Languages = (typeof languages)[number]
 

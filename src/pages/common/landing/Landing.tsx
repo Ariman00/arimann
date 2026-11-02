@@ -175,6 +175,62 @@ const copy = {
     contactButton: 'Get in touch',
     footer: 'Student portfolio · East Kazakhstan Technical University',
   },
+  es: {
+    nav: ['Sobre mí', 'Proyectos', 'Habilidades'],
+    availability: 'ABIERTO A NUEVAS IDEAS',
+    eyebrow: 'PORTAFOLIO · 2026',
+    heading: 'Modelo ideas. Creo soluciones digitales.',
+    intro:
+      'Soy Ariman Akhmetov, estudiante de cuarto curso en la EKTU, donde estudio modelado matemático e informático. Combino matemáticas, programación y curiosidad para comprender sistemas complejos.',
+    projectsButton: 'Ver proyectos',
+    aboutButton: 'Sobre mí',
+    degree: '4.º curso · EKTU',
+    degreeNote: 'Modelado matemático e informático',
+    sectionLabel: 'DEL ESTUDIO A LA PRÁCTICA',
+    projectsTitle: 'Conceptos de proyectos',
+    projectsNote:
+      'Ideas académicas que muestran mi forma de abordar el modelado.',
+    projects: [
+      {
+        title: 'Flujo urbano',
+        type: 'MODELADO DE SISTEMAS',
+        description:
+          'Concepto de un modelo de tráfico con escenarios de congestión, puntos críticos y comparación de estrategias de semáforos.',
+        tags: ['Python', 'Modelado', 'Datos'],
+      },
+      {
+        title: 'Laboratorio numérico',
+        type: 'MATEMÁTICA COMPUTACIONAL',
+        description:
+          'Experimentos interactivos con métodos numéricos para estudiar la estabilidad y precisión de las soluciones.',
+        tags: ['Métodos numéricos', 'Visualización', 'Matemáticas'],
+      },
+      {
+        title: 'EcoBalance',
+        type: 'MODELOS INFORMÁTICOS',
+        description:
+          'Prototipo académico del consumo energético urbano con parámetros ajustables, gráficos y distintos escenarios.',
+        tags: ['Dinámica de sistemas', 'Análisis', 'Prototipo'],
+      },
+    ],
+    stack: 'MIS HERRAMIENTAS',
+    stackTitle: 'Donde las matemáticas se encuentran con el código',
+    stackText:
+      'Me centro en comprender el sistema completo: desde definir el problema y sus supuestos hasta calcular y presentar los resultados con claridad.',
+    skills: [
+      'Modelado matemático',
+      'Métodos numéricos',
+      'Python y análisis de datos',
+      'Visualización de resultados',
+    ],
+    contact: '¿TIENES UNA IDEA?',
+    contactTitle: 'Hablemos de lo que podemos modelar.',
+    contactText:
+      'Abierto a colaboraciones académicas, problemas de investigación y prácticas interesantes.',
+    contactButton: 'Contactar',
+    footer:
+      'Portafolio estudiantil · Universidad Técnica de Kazajistán Oriental',
+  },
 } as const
 
 const projectImages = [
@@ -241,7 +297,7 @@ const Landing = () => {
           ))}
         </nav>
         <div className="portfolio-languages" aria-label="Language selector">
-          {(['ru', 'kk', 'en'] as const).map((lang) => (
+          {(['ru', 'kk', 'en', 'es'] as const).map((lang) => (
             <button
               key={lang}
               type="button"
@@ -363,7 +419,9 @@ const Landing = () => {
             ? 'КОНЦЕПТЫ УЧЕБНЫХ ПРОЕКТОВ · НЕ ЗАВЕРШЁННЫЕ КЕЙСЫ'
             : language === 'kk'
               ? 'ОҚУ ЖОБАЛАРЫНЫҢ ТҰЖЫРЫМДАМАЛАРЫ · АЯҚТАЛҒАН ЖҰМЫСТАР ЕМЕС'
-              : 'STUDENT PROJECT CONCEPTS · NOT COMPLETED CASE STUDIES'}
+              : language === 'es'
+                ? 'CONCEPTOS ACADÉMICOS · NO SON PROYECTOS TERMINADOS'
+                : 'STUDENT PROJECT CONCEPTS · NOT COMPLETED CASE STUDIES'}
         </div>
       </section>
 
